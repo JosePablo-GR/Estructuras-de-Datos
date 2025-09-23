@@ -47,7 +47,7 @@ public class Moneda {
             }
 
         }
-        
+
         System.out.println("]");
 
     }
@@ -56,14 +56,12 @@ public class Moneda {
 
 		Random rd = new Random();
 
-		char c = args[0].charAt(0);
-		int n = Character.getNumericValue(c);
+		try {
 
-		if(args.length != 0) {
+			char c = args[0].charAt(0);
+			int n = Character.getNumericValue(c);
 
-			//System.out.println("Hubo argumentos");
-
-			System.out.println("Me repito " + n + " veces.");
+			//System.out.println("Me repito " + n + " veces.");
 
 			int aguila = 0;
 			int sol = 0;
@@ -91,9 +89,9 @@ public class Moneda {
 			System.out.println("El porcentaje de \"Águila\" fue: " + proporcion[0] + "%.");
 			System.out.println("El porcentaje de \"Sol\" fue: " + proporcion[1] + "%.");
 
-		} else {
+		} catch (ArrayIndexOutOfBoundsException | NegativeArraySizeException e) {
 
-			System.out.println("NO HUBO ARGS");
+			System.out.println("Error: Argumentos inválidos\n" + e.getMessage());
 
 		}
 
