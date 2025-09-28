@@ -2,21 +2,30 @@ import java.util.Random;
 
 public class Moneda {
 
-	public static int racha(int[] registro) {
+	public static int racha (int[] registro) {
 
-	    int veces = 0;
+		if (registro == null || registro.length == 0) return 0;
 
-	    for (int i = 0; i < registro.length - 1; i++) {
+		int max = 1;
+		int actual = 1;
 
-	        if (registro[i] == registro[i + 1]) {
+		for (int i = 1; i < registro.length; i++) {
 
-	            veces++;
+			if (registro[i] == registro[i - 1]) {
 
-	        }
+				actual++;
 
-	    }
+			} else {
 
-	    return veces;
+				if (actual > max) max = actual;
+
+				actual = 1; // Se reinicia la racha
+
+			}
+
+		}
+
+		return Math.max(max,actual);
 
 	}
 
@@ -32,7 +41,7 @@ public class Moneda {
 
 	}
 
-	public static void imprimirArreglo(int[] arreglo) {
+	public static void imprimirArreglo (int[] arreglo) {
 
         System.out.print("[");
 
@@ -58,10 +67,7 @@ public class Moneda {
 
 		try {
 
-			char c = args[0].charAt(0);
-			int n = Character.getNumericValue(c);
-
-			//System.out.println("Me repito " + n + " veces.");
+			int n = Integer.parseInt(args[0]);
 
 			int aguila = 0;
 			int sol = 0;
@@ -78,8 +84,8 @@ public class Moneda {
 
 			}
 
-			imprimirArreglo(registro);
-			System.out.println("Racha: " + racha(registro));
+			//imprimirArreglo(registro);
+			System.out.println("\nRacha: " + racha(registro));
 
 			System.out.println("\"Águila\" salió " + aguila + " veces.");
 			System.out.println("\"Sol\" salió " + sol + " veces.");
@@ -91,7 +97,7 @@ public class Moneda {
 
 		} catch (ArrayIndexOutOfBoundsException | NegativeArraySizeException e) {
 
-			System.out.println("Error: Argumentos inválidos\n" + e.getMessage());
+			System.out.println("Error: Argumentos inválidos.\n" + e.getMessage());
 
 		}
 
